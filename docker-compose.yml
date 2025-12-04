@@ -1,0 +1,42 @@
+version: '3.8'
+
+# Docker Compose para proyecto RestLosPinos
+# - Construye la imagen desde el Dockerfile local
+# - Usa un archivo `.env` por defecto (variables y credenciales)
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rest-los-pinos:latest
+    container_name: rest-los-pinos
+    env_file:
+      - .env
+    environment:
+      # Variables pasadas al contenedor (puedes sobrescribir desde .env o con --env-file)
+      - PORT=${PORT:-8081}
+      - DB_USERNAME=${DB_USERNAME:-DEVELOPER_ANGI}
+      - DB_PASSWORD=${DB_PASSWORD:-ResLosPinos_Angi_01}
+      - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_SECRET_INCRIPT=${JWT_SECRET_INCRIPT}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+    ports:
+      # Mapea puerto del host (HOST_PORT) al puerto del contenedor 8081
+      - "${HOST_PORT:-8081}:8081"
+    restart: unless-stopped
+    # Si necesitas acceso a los archivos de wallet en runtime, puedes montar la carpeta (opcional):
+    # volumes:
+    #   - ./src/main/resources/Wallet_RestauranteLosPinos:/app/wallet:ro
+
+# Comentarios solicitados por el enunciado:
+# Endpoint GET público de ejemplo (comentado):
+# GET /v1/api/customers
+# Usuarios y contraseñas (comentado):
+# Usuario por defecto: DEVELOPER_ANGI / ResLosPinos_Angi_01
+# Usuario alternativo: ALT_USER / Alt_Pass_123
+
+networks:
+  default:
+    name: rest-los-pinos-net

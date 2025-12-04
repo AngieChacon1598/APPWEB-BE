@@ -1,0 +1,44 @@
+#server:
+#  port: 8081
+#
+#spring:
+#  application:
+#    name: restLosPinos
+#  datasource:
+#    driver-class-name: oracle.jdbc.OracleDriver
+#    url: jdbc:oracle:thin:@restaurantelospinos_low?TNS_ADMIN=src/main/resources/Wallet_RestauranteLosPinos
+#    username: DEVELOPER_ANGI
+#    password: ResLosPinos_Angi_01
+#  jpa:
+#      properties:
+#        hibernate:
+#          dialect: org.hibernate.dialect.OracleDialect  # Añade esto:cite[3]
+#      show-sql: true
+#
+#jwt:
+#    secret: ZXN0YSBlcyBtaWMgY2xhdmUgc2VjcmV0YSBubyBsYSBwdWVkZXMgaGFrZWFy
+#    secret-incript: Y29uIGVzdGFzIHBhbGFicmFz
+#    expiration: 604800000
+
+
+server:
+  port: ${PORT}  # Render usa la variable PORT
+
+spring:
+  application:
+    name: restLosPinos
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: ${DATABASE_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+    show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET}
+  secret-incript: ${JWT_SECRET_INCRIPT}
+  expiration: ${JWT_EXPIRATION}

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Productos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e12b56f2-ab09-42e0-b251-8ebc01723f2d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Oracle Cloud"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="P_STATE" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new java.math.BigDecimal(-1)]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT  
+    M.MENU_ID,
+    M.NAME,
+    M.DESCRIPTION,
+    M.PRICE,
+    C.NAME AS CATEGORY_NAME,
+    M.CREATED_AT,
+    M.STATE
+FROM MENU M
+JOIN CATEGORY C
+    ON M.CATEGORY_ID = C.CATEGORY_ID
+WHERE 
+    (CAST($P{P_STATE} AS NUMBER) = -1 
+     OR M.STATE = CAST($P{P_STATE} AS NUMBER))
+ORDER BY M.MENU_ID]]>
+	</queryString>
+	<field name="MENU_ID" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="MENU_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="MENU_ID"/>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DESCRIPTION"/>
+		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION"/>
+	</field>
+	<field name="PRICE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="PRICE"/>
+		<property name="com.jaspersoft.studio.field.label" value="PRICE"/>
+	</field>
+	<field name="CATEGORY_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="CATEGORY_NAME"/>
+		<property name="com.jaspersoft.studio.field.label" value="CATEGORY_NAME"/>
+	</field>
+	<field name="CREATED_AT" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="CREATED_AT"/>
+		<property name="com.jaspersoft.studio.field.label" value="CREATED_AT"/>
+	</field>
+	<field name="STATE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="STATE"/>
+		<property name="com.jaspersoft.studio.field.label" value="STATE"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="129" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="550" height="80" forecolor="#030000" backcolor="#030000" uuid="dfc9e6aa-9462-43f5-9f7c-d7b3798070ea"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="80" width="550" height="30" forecolor="#CC0000" backcolor="#CC0000" uuid="1f67072f-d0ae-4439-b036-e9f494c171c3"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Transparent" x="10" y="10" width="360" height="58" forecolor="#FFFFFF" uuid="e4e88a08-d42c-4ff8-b460-df8e48947944"/>
+				<textElement>
+					<font fontName="Times New Roman" size="50" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rest. Los Pinos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="57" width="140" height="20" forecolor="#CCCCCC" uuid="1294f4cd-ec9d-4ef8-a05c-36502aad7341"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16"/>
+				</textElement>
+				<text><![CDATA[Experiencia Culinaria]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="452" y="90" width="100" height="30" forecolor="#FFFFFF" uuid="bb09d356-3110-4932-9c23-7a2b71ccf27b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="9" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="6" width="550" height="29" backcolor="#030000" uuid="d0717c92-2580-4873-bbab-916f5ef09dcb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="12" width="20" height="30" forecolor="#FFFFFF" uuid="674e8384-e29c-4ca6-8425-cf2de9aa4b74"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="13" width="120" height="30" forecolor="#FFFFFF" uuid="f6761afe-f938-4cf2-84c5-e0de4e111952"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre del Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="13" width="100" height="30" forecolor="#FFFFFF" uuid="918d7a62-2d28-422a-8357-3d8542a36ac1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="14" width="100" height="30" forecolor="#FFFFFF" uuid="b48b8237-74ad-4f08-9df9-cf7caa502b08"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="13" width="100" height="30" forecolor="#FFFFFF" uuid="0cf7431c-f266-4299-b27d-d95ab1cae403"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="13" width="100" height="30" forecolor="#FFFFFF" uuid="19a48f64-4847-4e52-85ae-e510ffcbe0c2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79be44d7-2ff8-4815-b1de-38a4ae566c76"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fech. Creación]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="10" width="30" height="30" uuid="25b85ba2-426d-4dea-9a55-ee289634ac03"/>
+				<textFieldExpression><![CDATA[$F{MENU_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="10" width="100" height="30" uuid="c94bc141-008e-47c0-aba3-cf6ffd8f2003"/>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="10" width="100" height="30" uuid="692bf22c-765d-466b-ae97-14a95a469e8a"/>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="10" width="39" height="30" uuid="286e81aa-56c6-4099-9c81-865ac52d0ae9"/>
+				<textFieldExpression><![CDATA[$F{PRICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="10" width="80" height="30" uuid="2429f2ef-a347-4b5c-b592-e882b43bf0cd"/>
+				<textFieldExpression><![CDATA[$F{CATEGORY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="12" width="100" height="30" uuid="0040f7f9-3076-414d-b6ee-9852bbb705fb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="79be44d7-2ff8-4815-b1de-38a4ae566c76"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{CREATED_AT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="294" y="10" width="30" height="30" uuid="dbd91a29-7391-4a6f-ac9b-4f2c7dfe1618"/>
+				<text><![CDATA[S/.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="151" y="20" width="299" height="19" uuid="7259839e-0fc6-4153-bdc0-14ab59fe8220"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Reporte generado automáticamente. Resturante Los Pinos]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</summary>
+</jasperReport>
