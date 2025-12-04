@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: rest-los-pinos
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: PORT
+        value: 8081
+      - key: JWT_EXPIRATION
+        value: 604800000
+      # Las siguientes variables deben configurarse manualmente en Render Dashboard:
+      # - DB_USERNAME
+      # - DB_PASSWORD
+      # - DATABASE_URL
+      # - JWT_SECRET
+      # - JWT_SECRET_INCRIPT
+    healthCheckPath: /v1/api/hola
+    autoDeploy: true
+
