@@ -17,8 +17,7 @@ public class WebConfig {
                                 "https://vallegrande.github.io",
                                 "http://localhost:4200",
                                 "http://localhost:3000",  // React por defecto
-                                // Agrega aquí la URL de tu frontend en Render después del despliegue
-                                // Ejemplo: "https://appweb-fe.onrender.com"
+                                "https://appweb-fe.onrender.com",  // Frontend React en Render
                                 "*"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
